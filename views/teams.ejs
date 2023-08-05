@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+
+<body>
+  <% for (const [key, value] of Object.entries(squad)) { %>
+    <h2>
+      <%= key %>
+    </h2>
+
+    <ul class="list">
+      <% for (player of value) { %>
+        <li class="item">
+          <a href="/players/<%= player.id %>">
+            <img src="<%= player.image %>" alt="">
+            <div class="name">
+              <%= player.name %>
+            </div>
+            <div>
+              position: <%= player.positions.first.shortName %>
+            </div>
+            <div>
+              age: <%= player.age %>
+            </div>
+            <div>
+              value: <%= player.marketValue.value / 1000000 %>M <%= player.marketValue.currency %>
+            </div>
+            <div>
+              joined: <%= new Date(player.joined * 1000).toLocaleDateString('ja-JP', {year: 'numeric', month: '2-digit', day: '2-digit'}) %>
+            </div>
+            <% if (player.injury===null) {%>
+              <div>
+                injury: No
+              </div>
+            <% } else { %>
+              <div class="alert">
+                injury: Yes
+              </div>
+            <% } %>
+          </a>
+        </li>
+      <% } %>
+    </ul>
+  <% } %>
+  <input type="button" value="チーム一覧に戻る" onclick="window.history.back();">
+</body>
+
+</html>
+
+<style>
+  .list {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .item {
+    width: calc(100% / 5 - 40px);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding: 16px 0;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .item:hover {
+    background-color: #eee;
+  }
+
+  .name {
+    font-weight: bold;
+  }
+
+  .alert {
+    color: red;
+  }
+</style>

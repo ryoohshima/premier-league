@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premiere League Clubs</title>
+</head>
+
+<body>
+  <h1>Premiere League Clubs</h1>
+  <ul class="list">
+    <% for (club of clubs) { %>
+      <li class="item">
+        <a href="/teams/<%= club.id %>">
+          <img src="<%= club.image %>" alt="">
+          <%= club.name %>
+        </a>
+      </li>
+      <% } %>
+  </ul>
+</body>
+
+</html>
+
+<style>
+  .list {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  .item {
+    width: calc(100% / 4 - 32px);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  .item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px 0;
+    text-decoration: none;
+    color: #333;
+  }
+  .item:hover {
+    background-color: #eee;
+  }
+</style>

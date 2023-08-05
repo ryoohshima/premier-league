@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+
+<body>
+  <h2><%= data.share.title %></h2>
+  <div class="wrap">
+    <% for (stats of data.competitionPerformanceSummery) { %>
+      <div class="item">
+        <img src="<%= stats.competition.image %>" alt="">
+        <table class="item-table">
+          <% for (property of properties) { %>
+            <tr>
+              <td><%= property %></td><td><%= stats.performance[property] %></td>
+            </tr>
+          <% } %>
+        </table>
+      </div>
+    <% } %>
+  </div>
+
+  <input type="button" value="チーム一覧に戻る" onclick="window.history.back();">
+</body>
+
+</html>
+
+<style>
+  .wrap {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    padding: 0 24px;
+  }
+  .item {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 4 - 32px);
+    padding: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  .item-table {
+    border-spacing: 8px;
+  }
+</style>
